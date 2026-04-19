@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fabiya Noor — Software Engineer & Data Scientist</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #03040b;
+      --bg-card: rgba(15, 23, 42, 0.5);
+      --border: rgba(255, 255, 255, 0.07);
+      --border-hover: rgba(56, 189, 248, 0.3);
+      --accent-1: #38bdf8;
+      --accent-2: #818cf8;
+      --accent-3: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-main: 'Inter', -apple-system, sans-serif;
+      --radius: 16px;
+      --glow-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      font-size: 16px;
+      line-height: 1.8;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Atmospheric Background Gradients */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -10%;
+      left: -10%;
+      width: 50vw;
+      height: 50vh;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(60px);
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -10%;
+      right: -10%;
+      width: 50vw;
+      height: 50vh;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.06) 0%, transparent 60%);
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(60px);
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(3, 4, 11, 0.7);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      box-shadow: 0 0 10px var(--accent-1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 8rem 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      padding-bottom: 0;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      background: rgba(56, 189, 248, 0.05);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-1);
+      margin-bottom: 2rem;
+      animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-1);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .hero-name {
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.5rem;
+      animation: slideUp 0.8s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #fff 20%, var(--accent-1) 60%, var(--accent-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 1.8rem;
+      animation: slideUp 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 750px;
+      line-height: 1.9;
+      margin-bottom: 3.5rem;
+      font-weight: 400;
+      animation: slideUp 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      animation: slideUp 0.8s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 1rem 2.2rem;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--accent-1);
+      transform: translateY(-3px);
+    }
+
+    /* SECTION HEADERS */
+    .section-header {
+      margin-bottom: 4.5rem;
+      max-width: 800px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      color: #fff;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+
+    /* ABOUT */
+    .about-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-text h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+      color: #fff;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+      background: rgba(30, 41, 59, 0.6);
+      box-shadow: var(--glow-shadow);
+    }
+
+    .skill-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .skill-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .skill-icon {
+      font-size: 1.8rem;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .skill-card:hover .pill {
+      border-color: rgba(56, 189, 248, 0.2);
+      color: #fff;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-8px);
+      box-shadow: var(--glow-shadow);
+      background: rgba(30, 41, 59, 0.6);
+    }
+
+    .project-card:hover::after {
+      opacity: 1;
+    }
+
+    .project-icon {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .project-card p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 2rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-tag {
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(56, 189, 248, 0.08);
+      color: var(--accent-1);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    /* EXPERIENCE */
+    .timeline {
+      position: relative;
+      max-width: 950px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-1), var(--border), transparent);
+    }
+
+    .timeline-item {
+      padding-left: 50px;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 9px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-1);
+      box-shadow: 0 0 0 4px var(--bg), 0 0 15px var(--accent-1);
+    }
+
+    .timeline-date {
+      font-size: 0.9rem;
+      color: var(--accent-1);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #fff;
+    }
+
+    .timeline-company {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+
+    .timeline-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .timeline-card ul li {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      position: relative;
+      line-height: 1.7;
+    }
+
+    .timeline-card ul li::before {
+      content: '▹';
+      position: absolute;
+      left: -22px;
+      color: var(--accent-1);
+      font-size: 1.2rem;
+      top: -2px;
+    }
+
+    /* CERTS */
+    .certs-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .cert-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      width: calc(33.333% - 1rem);
+      min-width: 300px;
+      max-width: 360px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      position: relative;
+      backdrop-filter: blur(10px);
+    }
+
+    .cert-card:hover {
+      border-color: var(--accent-1);
+      transform: translateY(-4px);
+      box-shadow: var(--glow-shadow);
+      background: rgba(30, 41, 59, 0.6);
+    }
+
+    .cert-card::after {
+      content: '↗';
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .cert-card:hover::after {
+      opacity: 1;
+      color: var(--accent-1);
+      transform: translate(2px, -2px);
+    }
+
+    .cert-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .cert-info h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .cert-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* CONTACT */
+    #contact {
+      padding: 6rem 0 8rem;
+    }
+
+    .contact-box {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.6), transparent);
+      border: 1px solid var(--border);
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 24px;
+      padding: 6rem 3rem;
+      text-align: center;
+      position: relative;
+      box-shadow: inset 0 10px 40px -20px rgba(56, 189, 248, 0.1);
+    }
+
+    .contact-box h2 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .contact-box>p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin: 0 auto 3.5rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* REVEAL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cert-card {
+        width: calc(50% - 0.75rem);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cert-card {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .hero-name {
+        font-size: 3rem;
+      }
+
+      .hero-title {
+        font-size: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .contact-box {
+        padding: 4rem 1.5rem;
+      }
+    }
+
+    /* CHAT WIDGET */
+    #chat-widget {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    #chat-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #chat-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    #chat-window {
+      width: 350px;
+      height: 450px;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px) scale(0.95);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--glow-shadow);
+      transform-origin: bottom right;
+    }
+
+    #chat-window.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .chat-header {
+      background: rgba(3, 4, 11, 0.8);
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-header .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    .close-chat {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .close-chat:hover {
+      color: #fff;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 10px 15px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      animation: slideUpMsg 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUpMsg {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msg-bot {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--text-main);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-user {
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-input-area {
+      padding: 15px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      background: rgba(3, 4, 11, 0.8);
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 10px 15px;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .chat-input-area input:focus {
+      border-color: var(--accent-1);
+    }
+
+    .chat-input-area button {
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s;
+    }
+
+    .chat-input-area button:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 480px) {
+      #chat-window {
+        width: calc(100vw - 40px);
+        height: 60vh;
+        right: 20px;
+        bottom: 90px;
+      }
+
+      #chat-widget {
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <div class="nav-logo">
+      <div class="nav-logo-dot"></div>
+      Fabiya Noor
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certs">Certifications</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="badge-dot"></span>Available for Opportunities</div>
+        <h1 class="hero-name">Fabiya <span class="text-gradient">Noor</span></h1>
+        <p class="hero-title">Software Engineer & Data Scientist</p>
+        <p class="hero-desc">I specialize in designing scalable backend architectures, engineering sophisticated data
+          pipelines, and building robust full-stack systems. Driven by a deep passion for continuous technical growth, I
+          focus on integrating machine learning with production-grade engineering to solve complex, real-world problems.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="reveal">
+    <div class="container about-container">
+      <div class="about-text">
+        <h2 class="section-title">About Me</h2>
+        <h3>Bridging the gap between intelligent algorithms and robust system architecture.</h3>
+        <p>As a Computer Science undergraduate with a deep specialization in both software engineering and artificial
+          intelligence, I view technology as a tool for meaningful impact. My engineering philosophy centers on Clean
+          Architecture, rigorous testing, and maintainable codebase design.</p>
+        <p>My practical experience ranges from architecting high-performance .NET RESTful APIs to deploying
+          transformer-based NLP models. I thrive in dynamic environments where cross-functional collaboration and
+          data-driven decision-making are paramount. By seamlessly integrating predictive models into scalable web and
+          mobile applications, I aim to deliver both analytical rigor and uncompromising software reliability.</p>
+        <p>I am actively seeking roles where I can collaborate with elite engineering teams, tackle ambiguous technical
+          challenges, and continuously elevate my technical proficiency.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Technical Expertise</h2>
+        <p class="section-desc">A comprehensive, continuously expanding toolkit designed for full-stack versatility and
+          advanced data integration.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <h3 class="skill-icon">🧠 AI & Machine Learning</h3>
+          <div class="skill-pills">
+            <span class="pill">PyTorch</span><span class="pill">Scikit-learn</span>
+            <span class="pill">NLP / BERT</span><span class="pill">LLMs Integration</span>
+            <span class="pill">Prompt Engineering</span><span class="pill">LangChain</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3 class="skill-icon">📊 Data Science</h3>
+          <div class="skill-pills">
+            <span class="pill">Pandas</span><span class="pill">NumPy</span>
+            <span class="pill">Data Visualization</span><span class="pill">Exploratory Data Analysis</span>
+            <span class="pill">Feature Engineering</span><span class="pill">SQL Analysis</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3 class="skill-icon">💻 Frameworks & Web</h3>
+          <div class="skill-pills">
+            <span class="pill">React</span><span class="pill">Blazor</span>
+            <span class="pill">.NET MAUI</span><span class="pill">Flask API</span>
+            <span class="pill">ASP.NET Core</span><span class="pill">RESTful Architectures</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3 class="skill-icon">🛠️ Tools & Environments</h3>
+          <div class="skill-pills">
+            <span class="pill">Jupyter Notebook</span><span class="pill">PyCharm</span>
+            <span class="pill">VS Code</span><span class="pill">Visual Studio</span>
+            <span class="pill">Google Colab</span><span class="pill">Jira</span>
+            <span class="pill">Git / CI/CD Pipelines</span><span class="pill">Microsoft Office</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Selected Projects</h2>
+        <p class="section-desc">Production-oriented applications demonstrating end-to-end engineering, from data
+          modeling to robust API deployment.</p>
+      </div>
+      <div class="projects-grid">
+        <a href="https://github.com/fabiyanoor" target="_blank" rel="noopener" class="project-card reveal">
+          <div class="project-icon">🔍</div>
+          <h3>TruthLens AI Pipeline</h3>
+          <p>Architected a highly accurate misinformation detection system utilizing fine-tuned BERT-based transformers.
+            Designed and deployed the model inference engine via a REST API, providing real-time, low-latency prediction
+            confidence scoring for production clients.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span><span class="tech-tag">PyTorch</span><span class="tech-tag">REST
+              API</span><span class="tech-tag">NLP</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/fabiyanoor" target="_blank" rel="noopener" class="project-card reveal">
+          <div class="project-icon">📄</div>
+          <h3>Intelligent Resume Analyzer</h3>
+          <p>Engineered a scalable platform integrating LangChain and advanced LLM APIs to systematically parse CVs,
+            conduct heuristic skill gap analysis, and dynamically generate personalized learning roadmaps with rich
+            interactive visualizations.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span><span class="tech-tag">LangChain</span><span
+              class="tech-tag">Streamlit</span><span class="tech-tag">LLMs</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/fabiyanoor" target="_blank" rel="noopener" class="project-card reveal">
+          <div class="project-icon">✅</div>
+          <h3>Halal-Verifier System</h3>
+          <p>Developed an enterprise-grade .NET library and public API that evaluates consumer packaged goods. Leveraged
+            multimodal AI for complex automated compliance checking, significantly reducing manual ingredient
+            verification time.</p>
+          <div class="project-tech">
+            <span class="tech-tag">C#</span><span class="tech-tag">.NET 8</span><span class="tech-tag">Gemini
+              API</span><span class="tech-tag">System Design</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Experience & Education</h2>
+        <p class="section-desc">A trajectory defined by hands-on engineering execution and rigorous academic research.
+        </p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Jan 2025 — Present</div>
+          <div class="timeline-card">
+            <h3>Software Engineer</h3>
+            <div class="timeline-company">Allspicetech</div>
+            <ul>
+              <li>Spearheaded the development of robust, enterprise-grade .NET websites and cross-platform applications
+                utilizing MAUI and Blazor.</li>
+              <li>Architected and implemented backend solutions strictly adhering to Clean Architecture principles,
+                directly ensuring system scalability, modularity, and long-term maintainability.</li>
+              <li>Successfully integrated advanced AI capabilities into core systems, driving enhanced application
+                features and optimizing the overall user experience.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Dec 2023 — Present</div>
+          <div class="timeline-card">
+            <h3>B.Sc. Computer Science</h3>
+            <div class="timeline-company">Lahore College for Women University</div>
+            <ul>
+              <li>Maintained a rigorous academic focus on Algorithms, Advanced Data Structures, Machine Learning Theory,
+                and Software Engineering lifecycles.</li>
+              <li>Conducted and published self-driven research projects in applied data science concurrently with
+                demanding academic coursework.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Apr 2021 — Jun 2023</div>
+          <div class="timeline-card">
+            <h3>Intermediate in Computer Science (ICS)</h3>
+            <div class="timeline-company">Punjab Group of Colleges</div>
+            <ul>
+              <li>Cultivated a strong, fundamental understanding of programming logic, mathematical modeling, and core
+                computer science theory.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Certifications</h2>
+        <p class="section-desc">Verified credentials reflecting a commitment to continuous learning and technical
+          mastery.</p>
+      </div>
+      <div class="certs-grid">
+        <a href="Google_AI_Essentials.pdf" target="_blank" rel="noopener" class="cert-card reveal">
+          <div class="cert-logo">🤖</div>
+          <div class="cert-info">
+            <h4>Google AI Essentials</h4>
+            <p>Google / Coursera</p>
+          </div>
+        </a>
+        <a href="Google_DataScience.jpeg" target="_blank" rel="noopener" class="cert-card reveal">
+          <div class="cert-logo">📊</div>
+          <div class="cert-info">
+            <h4>Foundations of Data Science</h4>
+            <p>Google / Coursera</p>
+          </div>
+        </a>
+        <a href="Google_Data_Everywhere.jpeg" target="_blank" rel="noopener" class="cert-card reveal">
+          <div class="cert-logo">📈</div>
+          <div class="cert-info">
+            <h4>Data, Data, Everywhere</h4>
+            <p>Google / Coursera</p>
+          </div>
+        </a>
+        <a href="CPP_Programming.pdf" target="_blank" rel="noopener" class="cert-card reveal">
+          <div class="cert-logo">⚙️</div>
+          <div class="cert-info">
+            <h4>CS107: C++ Programming</h4>
+            <p>Saylor Academy</p>
+          </div>
+        </a>
+        <a href="International_Workshop.pdf" target="_blank" rel="noopener" class="cert-card reveal">
+          <div class="cert-logo">🌐</div>
+          <div class="cert-info">
+            <h4>International Workshop</h4>
+            <p>Professional Development</p>
+          </div>
+        </a>
+        <a href="Crash_course_in_python.jpeg" target="_blank" rel="noopener" class="cert-card reveal">
+          <div class="cert-logo">🐍</div>
+          <div class="cert-info">
+            <h4>Crash Course on Python</h4>
+            <p>Google / Coursera</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <div class="container">
+      <div class="contact-box">
+        <h2>Let's Build Something Impactful</h2>
+        <p>I am actively seeking software engineering and data science roles where I can contribute to mission-critical
+          systems and collaborate with forward-thinking teams.</p>
+
+        <div class="contact-links">
+          <a href="mailto:fabiyanoor7@gmail.com" class="btn btn-primary">Email Me</a>
+          <a href="https://www.linkedin.com/in/fabiyanoor/" target="_blank" rel="noopener"
+            class="btn btn-outline">LinkedIn</a>
+          <a href="https://github.com/fabiyanoor" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+        </div>
+
+        <a href="Fabiya_Noor.pdf" download class="btn btn-outline" style="margin-top: 1rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="margin-right: 8px; vertical-align: middle;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Download Resume
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div id="chat-widget">
+    <div id="chat-window">
+      <div class="chat-header">
+        <h3><span class="status-dot"></span> Fabiya's Agent</h3>
+        <button class="close-chat" id="close-chat">&times;</button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="msg msg-bot">Hi! I'm Fabiya's AI assistant. You can ask me about her experience, ambition, or how
+          she loves to work!</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask me something..." autocomplete="off" />
+        <button id="send-chat" aria-label="Send Message">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <button id="chat-toggle" aria-label="Toggle Chat">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <footer>
+    <p>Designed & Built by Fabiya Noor &middot; 2025</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Staggered animations for grids
+    const setupStaggeredObserver = (selector) => {
+      return new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll(selector);
+            cards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('visible');
+              }, index * 100); // 100ms stagger
+            });
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+    };
+
+    const grids = ['.skills-grid', '.projects-grid', '.certs-grid'];
+    grids.forEach(gridClass => {
+      const grid = document.querySelector(gridClass);
+      if (grid) {
+        const childClass = gridClass === '.skills-grid' ? '.skill-card' :
+          gridClass === '.projects-grid' ? '.project-card' : '.cert-card';
+        const obs = setupStaggeredObserver(childClass);
+        obs.observe(grid);
+        // Remove default reveal from children to let parent handle staggering
+        grid.querySelectorAll(childClass).forEach(c => c.classList.remove('reveal'));
+      }
+    });
+
+    // Navbar blur effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(3, 4, 11, 0.85)';
+        nav.style.boxShadow = '0 10px 30px -10px rgba(0,0,0,0.5)';
+      } else {
+        nav.style.background = 'rgba(3, 4, 11, 0.7)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // Chat Widget Logic
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWindow = document.getElementById('chat-window');
+    const closeChat = document.getElementById('close-chat');
+    const chatInput = document.getElementById('chat-input');
+    const sendChat = document.getElementById('send-chat');
+    const chatMessages = document.getElementById('chat-messages');
+
+    const toggleChat = () => {
+      chatWindow.classList.toggle('active');
+      if (chatWindow.classList.contains('active')) {
+        chatInput.focus();
+      }
+    };
+
+    chatToggle.addEventListener('click', toggleChat);
+    closeChat.addEventListener('click', toggleChat);
+
+    const addMessage = (text, sender) => {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `msg msg-${sender}`;
+      msgDiv.textContent = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    const processUserInput = (input) => {
+      const text = input.toLowerCase();
+      let response = "I'm just a simple bot and I don't know the answer to that. Please contact Fabiya directly at fabiyanoor7@gmail.com for more info!";
+
+      // Greetings & Status
+      if (text.includes("hi") || text.includes("hello") || text.includes("hey") || text.includes("greetings")) {
+        response = "Hello! I can answer questions about Fabiya's experience, skills, projects, and ambitions. What would you like to know?";
+      } else if (text.includes("how is she") || text.includes("how are you") || text.includes("how's she") || text.includes("doing") || text.includes("what's up")) {
+        response = "She's doing great, always eager to tackle new technical challenges! How can I help you learn more about her?";
+      } else if (text.includes("thank you") || text.includes("thanks")) {
+        response = "You're very welcome! Feel free to ask if you have any more questions.";
+      } else if (text.includes("welcome")) {
+        response = "Thank you! I'm here to help you learn more about Fabiya.";
+      }
+      // Identity & Demographics
+      else if (text.includes("name") || text.includes("who is she") || text.includes("who are you")) {
+        response = "Her name is Fabiya Noor, a passionate Software Engineer and Data Scientist.";
+      } else if (text.includes("age") || text.includes("old") || text.includes("born")) {
+        response = "She is a recent Computer Science graduate, so she is in her early twenties and full of energy for tech!";
+      }
+      // Education
+      else if (text.includes("education") || text.includes("university") || text.includes("degree") || text.includes("study") || text.includes("college") || text.includes("graduated")) {
+        response = "She is pursuing a B.Sc. in Computer Science at Lahore College for Women University, with a strong focus on Algorithms, Data Structures, and Machine Learning.";
+      }
+      // Experience
+      else if (text.includes("experience") || text.includes("work history") || text.includes("background") || text.includes("job") || text.includes("role") || text.includes("career")) {
+        response = "She's currently working as a Software Engineer at Allspicetech (since Jan 2025), focusing on enterprise .NET applications, MAUI, Blazor, and AI integrations. She is actively seeking AI and Data Science roles!";
+      }
+      // Specific Technologies & Skills
+      else if (text.includes("ai") || text.includes("artificial intelligence")) {
+        response = "She has strong experience in AI, building NLP pipelines, integrating LLMs, and working with PyTorch and LangChain. She is actively looking for AI-focused roles!";
+      } else if (text.includes("ml") || text.includes("machine learning")) {
+        response = "Her Machine Learning experience covers transformer-based models, fine-tuning, and prompt engineering. She is actively looking for Machine Learning roles!";
+      } else if (text.includes("data science") || text.includes("data analysis")) {
+        response = "She holds multiple Google Data Science certifications and has experience with EDA, feature engineering, Pandas, and SQL. She is actively looking for Data Science roles!";
+      } else if (text.includes(".net") || text.includes("c#") || text.includes("blazor") || text.includes("maui")) {
+        response = "She has extensive experience architecting enterprise .NET applications, RESTful APIs, Blazor, and MAUI at Allspicetech, though she is now actively looking to transition into AI and Data Science roles!";
+      } else if (text.includes("skill") || text.includes("technolog") || text.includes("tech stack") || text.includes("language") || text.includes("python")) {
+        response = "Her expertise spans AI/ML (PyTorch, LangChain, NLP), Data Science (Pandas, SQL), and Full-Stack Web/Mobile Dev (.NET, React, Python). She is actively looking for AI and Data Science roles!";
+      }
+      // Projects
+      else if (text.includes("project") || text.includes("portfolio") || text.includes("built") || text.includes("created")) {
+        response = "She has built production-ready systems like the TruthLens AI Pipeline, an Intelligent Resume Analyzer using LangChain, and a Halal-Verifier System with .NET and Gemini API.";
+      }
+      // Certifications
+      else if (text.includes("certif") || text.includes("course") || text.includes("google") || text.includes("coursera")) {
+        response = "She holds several professional certificates, including Google AI Essentials, Google Data Science Foundations, and a C++ Programming certification from Saylor Academy.";
+      }
+      // Ambitions
+      else if (text.includes("ambition") || text.includes("goal") || text.includes("future") || text.includes("looking for") || text.includes("aiming")) {
+        response = "Her ambition is to bridge the gap between intelligent algorithms and robust system architecture, delivering analytical rigor and uncompromising software reliability.";
+      }
+      // Philosophy & Interaction
+      else if (text.includes("how do you work") || text.includes("how does she work") || text.includes("how you work") || text.includes("how she works") || text.includes("philosophy") || text.includes("approach")) {
+        response = "Her engineering philosophy centers on Clean Architecture, rigorous testing, and maintainable codebase design.";
+      } else if (text.includes("interact") || text.includes("collaboration") || text.includes("team") || text.includes("soft skill") || text.includes("communication")) {
+        response = "She thrives in dynamic environments where cross-functional collaboration and data-driven decision-making are paramount.";
+      }
+      // Resume & Contact
+      else if (text.includes("resume") || text.includes("cv") || text.includes("document")) {
+        response = "You can download her full resume from the 'Let's Build Something Impactful' section at the bottom of the page!";
+      } else if (text.includes("contact") || text.includes("email") || text.includes("reach") || text.includes("hire") || text.includes("linkedin") || text.includes("github")) {
+        response = "You can email her at fabiyanoor7@gmail.com, or find her on LinkedIn and GitHub. The links are in the contact section!";
+      }
+
+      setTimeout(() => {
+        addMessage(response, 'bot');
+      }, 500);
+    };
+
+    const handleSend = () => {
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      addMessage(text, 'user');
+      chatInput.value = '';
+      processUserInput(text);
+    };
+
+    sendChat.addEventListener('click', handleSend);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleSend();
+    });
+
+  </script>
+</body>
+
+</html>
